@@ -1,3 +1,7 @@
+MySQL.ready(function()
+    MySQL.query("ALTER TABLE characters ADD COLUMN IF NOT EXISTS stauts LONGTEXT")
+end)
+
 local function AddStatus(playerId, status, amount)
     local config = Config.Types[status]
     if not config then

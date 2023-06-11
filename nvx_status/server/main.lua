@@ -1,5 +1,5 @@
 MySQL.ready(function()
-    MySQL.query("ALTER TABLE characters ADD COLUMN IF NOT EXISTS stauts LONGTEXT")
+    MySQL.query("ALTER TABLE characters ADD COLUMN IF NOT EXISTS status LONGTEXT AFTER money")
 end)
 
 local function AddStatus(playerId, status, amount)

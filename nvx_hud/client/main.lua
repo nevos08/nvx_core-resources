@@ -36,7 +36,8 @@ RegisterNUICallback("ready", function(_, cb)
 
     SendNUIMessage({
         eventName = "setConfig",
-        config = { EnableStatusHUD = Config.EnableStatusHUD, EnableVehicleHUD = Config.EnableVehicleHUD }
+        config = { EnableStatusHUD = Config.EnableStatusHUD, EnableVehicleHUD = Config.EnableVehicleHUD,
+            position = Config.Position }
     })
     UpdateHUD()
 

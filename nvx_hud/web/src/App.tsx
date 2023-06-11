@@ -6,6 +6,9 @@ import { emit } from './lib/nui'
 type HUDConfig = {
   EnableStatusHUD: boolean
   EnableVehicleHUD: boolean
+  position: {
+    [key: string]: string
+  }
 }
 
 type Status = {
@@ -19,7 +22,11 @@ export default function App() {
   const theme = useMantineTheme()
 
   const [open, setOpen] = useState<boolean>(false)
-  const [config, setConfig] = useState<HUDConfig>({ EnableStatusHUD: true, EnableVehicleHUD: true })
+  const [config, setConfig] = useState<HUDConfig>({
+    EnableStatusHUD: true,
+    EnableVehicleHUD: true,
+    position: { top: '30px', right: '20px' },
+  })
   const [status, setStatus] = useState<Status[]>([])
 
   useEffect(() => {
@@ -44,8 +51,6 @@ export default function App() {
         <Box
           sx={{
             position: 'absolute',
-            top: '30px',
-            right: '20px',
             width: '300px',
             padding: '5px 15px',
             backgroundColor: theme.colors.dark[7],
@@ -54,6 +59,7 @@ export default function App() {
             border: '1px solid #3e3e3e',
             display: open ? 'block' : 'none',
             opacity: 0.85,
+            ...config.position,
           }}
         >
           {status.length == 0 && <Text color="white">No status found to show here.</Text>}

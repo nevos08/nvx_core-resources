@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Box, Flex, Progress, Text, useMantineTheme } from '@mantine/core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { emit } from '../lib/nui'
+import { emit } from './lib/nui'
 
 type HUDConfig = {
   EnableStatusHUD: boolean
@@ -18,7 +18,7 @@ type Status = {
 export default function App() {
   const theme = useMantineTheme()
 
-  const [open, setOpen] = useState<boolean>(true)
+  const [open, setOpen] = useState<boolean>(false)
   const [config, setConfig] = useState<HUDConfig>({ EnableStatusHUD: true, EnableVehicleHUD: true })
   const [status, setStatus] = useState<Status[]>([])
 
@@ -44,8 +44,8 @@ export default function App() {
         <Box
           sx={{
             position: 'absolute',
-            bottom: '40px',
-            right: '50px',
+            top: '30px',
+            right: '20px',
             width: '300px',
             padding: '5px 15px',
             backgroundColor: theme.colors.dark[7],
@@ -62,12 +62,7 @@ export default function App() {
               return (
                 <Flex key={status.name} justify="space-between" align="center" gap="15px" my="5px">
                   <Flex sx={{ flexGrow: 1, display: 'flex', justifyContent: 'center' }}>
-                    <FontAwesomeIcon
-                      icon={`fa-solid fa-${status.icon}` as any}
-                      size="lg"
-                      color={status.color}
-                      beat={status.value < 20.0}
-                    />
+                    <FontAwesomeIcon icon={`fa-solid fa-${status.icon}` as any} size="lg" color={status.color} />
                   </Flex>
 
                   <Progress

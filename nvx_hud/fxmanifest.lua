@@ -8,6 +8,12 @@ description "Simple HUD for the NVX Framework"
 version "0.0.1"
 repository "https://github.com/nevos08/nvx_core-resources/tree/main/nvx_hud"
 
+ui_page "web/dist/index.html"
+files {
+    "web/dist/*",
+    "web/dist/**/*"
+}
+
 shared_scripts {
     "config.lua"
 }

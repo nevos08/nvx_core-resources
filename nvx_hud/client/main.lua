@@ -7,26 +7,28 @@ local function UpdateHUD()
     end
 
     -- Status
-    local nuiData = {}
-    for k, v in pairs(status) do
-        local config = Config.Status.Types[k]
-        if not config.showUI then
-            return
+    if Config.EnableStatusHUD then
+        local statusTypes = exports["nvx_status"]:GetStatusTypes()
+        local nuiData = {}
+        for k, v in pairs(status) do
+            local config = statusTypes[k]
+            if config.hud then
+                table.insert(nuiData,
+                    { name = k, value = (v / config.max) * 100, color = config.color, icon = config.icon })
+            end
         end
 
-        table.insert(nuiData, { name = k, value = (v / config.max) * 100, color = config.color, icon = config.icon })
+        SendNUIMessage({ eventName = "setStatus", status = nuiData })
     end
-
-    SendNUIMessage({ eventName = "setStatus", status = nuiData })
 end
-
-RegisterNetEvent("nvx_core:playerSpawned", function()
-    SendNUIMessage({ eventName = "setOpen", state = true })
-end)
 
 AddStateBagChangeHandler("status", nil, function(_, _, value)
     status = value
     UpdateHUD()
+end)
+
+RegisterNetEvent("nvx_core:playerSpawned", function()
+    SendNUIMessage({ eventName = "setOpen", state = true })
 end)
 
 RegisterNUICallback("ready", function(_, cb)
@@ -37,5 +39,6 @@ RegisterNUICallback("ready", function(_, cb)
         config = { EnableStatusHUD = Config.EnableStatusHUD, EnableVehicleHUD = Config.EnableVehicleHUD }
     })
     UpdateHUD()
+
     cb("ok")
 end)

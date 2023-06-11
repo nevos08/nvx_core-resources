@@ -7,7 +7,7 @@ Config.Types = {
         max = 100.0,
         remove = 5.0, -- how much to remove on every tick
         default = 100.0,
-        showUI = true,
+        hud = true,   -- Whether the status should be visible inside the HUD. Requires nvx_hud to work.
         color = "#d6661c",
         icon = "burger",
     },
@@ -16,7 +16,7 @@ Config.Types = {
         max = 100.0,
         remove = 8.0, -- how much to remove on every tick
         default = 100.0,
-        showUI = true,
+        hud = true,
         color = "#1c7ed6",
         icon = "glass-water"
     },
@@ -24,8 +24,8 @@ Config.Types = {
         min = 0.0,
         max = 100.0,
         remove = 1.0,
-        default = 10.0,
-        showUI = true,
+        default = 0.0,
+        hud = true,
         color = "#a10ca6",
         icon = "wine-bottle"
     }

@@ -8,3 +8,7 @@ local function StartTicks()
 end
 
 AddEventHandler("nvx_core:playerSpawned", StartTicks)
+
+exports("GetStatusTypes", function()
+    return Config.Types
+end)

@@ -11,7 +11,7 @@ library.add(fas)
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <MantineProvider>
+    <MantineProvider withGlobalStyles withNormalizeCSS>
       <App />
     </MantineProvider>
   </React.StrictMode>

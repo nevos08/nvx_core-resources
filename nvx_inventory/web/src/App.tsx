@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react'
-import { Transition, Box, Center, useMantineTheme } from '@mantine/core'
+import { Transition, useMantineTheme, Flex } from '@mantine/core'
+import InventoryContextProvider, { useInventory } from './context/InventoryContext'
+import Inventory from './components/Inventory'
 
 export default function App() {
   const theme = useMantineTheme()
@@ -20,17 +22,23 @@ export default function App() {
   return (
     <Transition mounted={open} transition="scale" duration={500}>
       {(styles) => (
-        <Center sx={styles as any} h="100vh">
-          <Box
-            sx={{
-              backgroundColor: theme.colors.dark[7],
-              borderRadius: theme.radius.sm,
-              boxShadow: theme.shadows.md,
-              border: '1px solid #383838',
-            }}
-          ></Box>
-        </Center>
+        <div style={styles}>
+          <InventoryContextProvider>
+            <Content />
+          </InventoryContextProvider>
+        </div>
       )}
     </Transition>
+  )
+}
+
+function Content() {
+  const { inventory, secondInventory } = useInventory()
+
+  return (
+    <Flex px="50px" w="100vw" h="100vh" justify={secondInventory ? 'space-between' : 'center'} align="center">
+      <Inventory inventory={inventory} isMain={true} />
+      {secondInventory && <Inventory inventory={secondInventory} />}
+    </Flex>
   )
 }

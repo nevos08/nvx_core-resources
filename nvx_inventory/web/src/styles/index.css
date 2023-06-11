@@ -15,3 +15,7 @@ html {
 body {
   background: transparent !important;
 }
+
+::-webkit-scrollbar {
+  display: none;
+}

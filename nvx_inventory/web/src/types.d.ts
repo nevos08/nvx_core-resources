@@ -1,4 +1,5 @@
 type ItemTypes = 'item' | 'weapon'
+type InventoryTypes = 'player' | 'vehicle' | 'storage'
 
 type Item = {
   name: string
@@ -10,11 +11,18 @@ type Item = {
 }
 
 interface IInventory {
-  label?: string
   maxWeight: number
   items: Item[]
 }
 
+interface ISecondInventory extends IInventory {
+  name: string
+  label: string
+  type: InventoryTypes
+}
+
 interface ILocales {
   title: string
+  use: string
+  give: string
 }

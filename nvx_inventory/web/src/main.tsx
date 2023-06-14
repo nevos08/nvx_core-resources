@@ -9,18 +9,17 @@ import LocalesContextProvider from './context/LocalesContext.tsx'
 // Icons
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fas } from '@fortawesome/free-solid-svg-icons'
+import InventoryContextProvider from './context/InventoryContext.tsx'
 
 library.add(fas)
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <MantineProvider
-      theme={{ colorScheme: 'dark', primaryColor: 'green', primaryShade: 5 }}
-      withGlobalStyles
-      withNormalizeCSS
-    >
+    <MantineProvider theme={{ colorScheme: 'dark', primaryColor: 'teal' }} withGlobalStyles withNormalizeCSS>
       <LocalesContextProvider>
-        <App />
+        <InventoryContextProvider>
+          <App />
+        </InventoryContextProvider>
       </LocalesContextProvider>
     </MantineProvider>
   </React.StrictMode>

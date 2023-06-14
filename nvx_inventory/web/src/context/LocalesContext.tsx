@@ -6,6 +6,8 @@ export const useLocales = () => useContext(LocalesContext) as ILocales
 export default function LocalesContextProvider({ children }: { children: ReactNode }) {
   const [locales, setLocales] = useState<ILocales>({
     title: 'Inventory',
+    use: 'Use',
+    give: 'Give',
   })
 
   useEffect(() => {

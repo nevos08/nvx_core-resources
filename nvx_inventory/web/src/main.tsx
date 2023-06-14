@@ -14,7 +14,11 @@ library.add(fas)
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <MantineProvider theme={{ colorScheme: 'dark' }} withGlobalStyles withNormalizeCSS>
+    <MantineProvider
+      theme={{ colorScheme: 'dark', primaryColor: 'green', primaryShade: 5 }}
+      withGlobalStyles
+      withNormalizeCSS
+    >
       <LocalesContextProvider>
         <App />
       </LocalesContextProvider>
